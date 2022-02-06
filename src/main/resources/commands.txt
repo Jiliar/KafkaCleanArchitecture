@@ -1,0 +1,23 @@
+-- Iniciar zookeeper
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+-- Iniciar Apache Kafka
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+-- Listar tópicos
+.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+-- Crear tópicos
+.\bin\windows\kafka-topics.bat --create --topic test-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+
+-- Crear productor
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test-topic
+
+-- Crear consumidor
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+
+-- Detener Apache Kafka
+.\bin\windows\kafka-server-stop.bat
+
+-- Detener zookeper
+.\bin\windows\zookeeper-server-stop.bat
